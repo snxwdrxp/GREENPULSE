@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_habitat_list"
+            android:icon="@android:drawable/ic_menu_view"
+            android:title="Liste des habitats" />
+        <item
+            android:id="@+id/nav_my_habitat"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="Mon habitat" />
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@android:drawable/ic_dialog_info"
+            android:title="Mes notifications" />
+        <item
+            android:id="@+id/nav_preferences"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Mes préférences" />
+    </group>
+    <item
+        android:id="@+id/nav_about"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="À propos" />
+</menu>

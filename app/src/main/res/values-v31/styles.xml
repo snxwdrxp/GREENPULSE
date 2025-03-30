@@ -1,0 +1,24 @@
+<resources>
+
+    <!-- Définition d'une TextAppearance custom pour le texte en gras -->
+    <style name="TextAppearance.Bold" parent="TextAppearance.AppCompat">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Theme.Appli_mobile" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/green_primary</item>
+        <item name="colorPrimaryDark">@color/green_primary</item>
+        <item name="colorAccent">@color/green_accent</item>
+        <item name="android:statusBarColor">@color/green_primary</item>
+        <item name="android:windowBackground">@color/green_background</item>
+        <item name="android:fontFamily">@font/raleway_light</item>
+        <!-- Optionnel : appliquer la TextAppearance par défaut -->
+        <item name="android:textAppearance">@style/TextAppearance.Bold</item>
+
+        <!-- Désactivation du splash par défaut d'Android -->
+        <item name="android:windowSplashScreenAnimatedIcon">@null</item>
+        <item name="android:windowSplashScreenBackground">@null</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@null</item>
+    </style>
+
+</resources>

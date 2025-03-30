@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Couleur principale : vert foncé -->
+    <color name="green_primary">#275e42</color>
+    <!-- Fond : vert clair/pâle -->
+    <color name="green_background">#c4d1b6</color>
+    <!-- Accent optionnel -->
+    <color name="green_accent">#3b7d55</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>
