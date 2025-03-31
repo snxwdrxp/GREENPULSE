@@ -60,9 +60,6 @@ public class HabitatListFragment extends Fragment {
                             return;
                         }
 
-                        // 🚀 Vérifier la réponse de l'API
-                        Log.d("DEBUG_API_RESPONSE", "Réponse API: " + result);
-
                         try {
                             // Convertir la réponse en JSONArray
                             JSONArray jsonArray = new JSONArray(result);
