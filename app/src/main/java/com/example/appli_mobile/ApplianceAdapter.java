@@ -1,6 +1,7 @@
 package com.example.appli_mobile;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import java.util.List;
 public class ApplianceAdapter extends ArrayAdapter<Appliance> {
     private Context context;
     private List<Appliance> appliances;
-    private String token; // Le token de l'utilisateur
+    private String token;
 
     public ApplianceAdapter(Context context, List<Appliance> appliances, String token) {
         super(context, 0, appliances);
@@ -43,12 +44,14 @@ public class ApplianceAdapter extends ArrayAdapter<Appliance> {
 
         tvName.setText(appliance.getName());
         tvWattage.setText("Puissance: " + appliance.getWattage() + "W");
+
+        // Fix du recyclage du CheckBox
+        checkBox.setOnCheckedChangeListener(null);
         checkBox.setChecked(appliance.isChecked());
 
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             appliance.setChecked(isChecked);
             if (isChecked) {
-                // Envoi de la requête pour ajouter l'appareil à la base de données
                 addApplianceToDatabase(appliance);
             }
         });
@@ -57,9 +60,14 @@ public class ApplianceAdapter extends ArrayAdapter<Appliance> {
     }
 
     private void addApplianceToDatabase(Appliance appliance) {
-        // Envoie la requête HTTP pour ajouter l'appareil
+        String url = "http://10.0.2.2/powerhome/ajoutAppliance.php";
+
+        Log.d("DEBUG_ION", "Envoi de la requête à: " + url);
+        Log.d("DEBUG_ION", "Données envoyées: name=" + appliance.getName()
+                + ", wattage=" + appliance.getWattage() + ", token=" + token);
+
         Ion.with(context)
-                .load("GET", "http://10.0.2.2/powerhome/ajoutAppliance.php")
+                .load("POST", "http://10.0.2.2/powerhome/ajoutAppliance.php")
                 .setBodyParameter("name", appliance.getName())
                 .setBodyParameter("wattage", String.valueOf(appliance.getWattage()))
                 .setBodyParameter("token", token)
@@ -73,23 +81,22 @@ public class ApplianceAdapter extends ArrayAdapter<Appliance> {
                             return;
                         }
 
-                        // Traiter la réponse du serveur
-                        try {
-                            JSONObject jsonResponse = new JSONObject(result);
-                            String status = jsonResponse.getString("success");
+                        // Afficher la réponse brute
+                        Log.d("DEBUG_JSON", "Réponse serveur brute: " + result);
 
-                            if ("true".equals(status)) {
-                                Toast.makeText(context, "Appareil ajouté avec succès. Réf: " + jsonResponse.getString("ref"), Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(context, jsonResponse.getString("message"), Toast.LENGTH_SHORT).show();
-                            }
+                        try {
+                            // Traiter la réponse en JSON
+                            JSONObject jsonResponse = new JSONObject(result);
+                            // Traiter le succès ou l'échec
                         } catch (JSONException ex) {
                             ex.printStackTrace();
                             Toast.makeText(context, "Erreur lors de la réponse", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+
     }
+
 
     public List<Appliance> getSelectedAppliances() {
         List<Appliance> selected = new ArrayList<>();
@@ -101,4 +108,5 @@ public class ApplianceAdapter extends ArrayAdapter<Appliance> {
         return selected;
     }
 }
+
 

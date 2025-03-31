@@ -3,6 +3,7 @@ package com.example.appli_mobile.fragments;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,7 @@ public class MyHabitatFragment extends Fragment {
 
         // simulation de consommation en pourcentage
         Ion.with(getContext())
-                .load("http://10.0.2.2/powerhome/getHabitats_v2.php?token=" + token)  // Envoi du token pour récupérer les données de l'utilisateur
+                .load("http://10.0.2.2/powerhome/consomation.php?token=" + token)
                 .asString()
                 .setCallback(new FutureCallback<String>() {
                     @Override
@@ -85,34 +86,34 @@ public class MyHabitatFragment extends Fragment {
                             return;
                         }
 
+                        // Affiche la réponse brute du serveur
+                        Log.d("DEBUG_JSON", "Réponse du serveur : " + result);
+
                         try {
-                            // Convertir la réponse en JSONArray
-                            JSONArray jsonArray = new JSONArray(result);
-                            int totalWattage = 0;
+                            // Si la réponse est une erreur, elle sera retournée en format JSON
+                            JSONObject jsonResponse = new JSONObject(result);
 
-                            // Lire chaque habitat
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject habitat = jsonArray.getJSONObject(i);
-                                // Vérifier que l'habitat appartient à l'utilisateur connecté
-                                String habitatToken = habitat.getString("token"); // Assurer que le token correspond
-                                if (habitatToken.equals(token)) {  // Seule l'habitation de l'utilisateur connecté
-                                    JSONArray appliances = habitat.getJSONArray("appliances");
-
-                                    // Lire les appareils et additionner les wattages
-                                    for (int j = 0; j < appliances.length(); j++) {
-                                        JSONObject appliance = appliances.getJSONObject(j);
-                                        totalWattage += appliance.getInt("wattage");
-                                    }
-                                    break;  // Une fois l'habitat de l'utilisateur trouvé, on arrête la boucle
-                                }
+                            // Vérification si une erreur est présente dans la réponse
+                            if (jsonResponse.has("error")) {
+                                String errorMessage = jsonResponse.getString("error");
+                                Toast.makeText(getContext(), errorMessage, Toast.LENGTH_LONG).show();
+                                return;
                             }
+
+                            // Récupérer la consommation totale (en watt)
+                            int totalWattage = jsonResponse.getInt("totalWattage");
 
                             // Calcul du pourcentage de consommation
                             int consumptionPercent = (totalWattage * 100) / 2000; // 2000W est la consommation maximale (ajuste selon tes besoins)
 
+                            // Limite la consommation à 100% au maximum
+                            if (consumptionPercent > 100) {
+                                consumptionPercent = 100;
+                            }
+
                             // Mettre à jour l'affichage
                             tvConsumption.setText("Consommation Totale: " + totalWattage + "W");
-                            progressBar.setProgress(consumptionPercent);
+                            progressBar.setProgress(consumptionPercent);  // Mise à jour de la barre de progression
 
                             // Simulation du système de bonus/malus
                             int deltaEcoCoin = 0;
@@ -139,9 +140,6 @@ public class MyHabitatFragment extends Fragment {
                         }
                     }
                 });
-
-
-
 
 
         return view;
