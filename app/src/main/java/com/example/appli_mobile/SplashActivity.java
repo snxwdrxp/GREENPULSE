@@ -4,27 +4,26 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import com.example.appli_mobile.utils.SessionManager;
 
-// ecran de splash, affiché pendant 2 sec
+import com.example.appli_mobile.MainActivity;
+import com.example.appli_mobile.R;
+
 public class SplashActivity extends Activity {
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                SessionManager session = new SessionManager(SplashActivity.this);
-                if (session.isLoggedIn()) {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-                } else {
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                }
-                finish();
-            }
-        }, 2000);
-    }
+    setContentView(R.layout.activity_splash);
+
+    new Handler().postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        // Transition vers la MainActivity
+        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+      }
+    }, 3000);
+  }
 }
