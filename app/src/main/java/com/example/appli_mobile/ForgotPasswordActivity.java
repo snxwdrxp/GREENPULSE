@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 // activité pour mot de passe oublié
@@ -20,6 +21,14 @@ public class ForgotPasswordActivity extends Activity {
 
         etEmail = findViewById(R.id.etEmail);
         btnReset = findViewById(R.id.btnReset);
+
+        ImageView backButton = findViewById(R.id.back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            finish();
+          }
+        });
 
         btnReset.setOnClickListener(new View.OnClickListener() {
             @Override

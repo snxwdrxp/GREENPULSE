@@ -1,28 +1,37 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
-  <!-- Définition d'une TextAppearance custom pour le texte en gras -->
-  <style name="TextAppearance.Bold" parent="TextAppearance.AppCompat">
-    <item name="android:textStyle">bold</item>
-  </style>
 
-  <!-- Thème principal de l'application -->
-  <style name="Theme.Appli_mobile" parent="Theme.AppCompat.Light.NoActionBar">
+  <!-- par défaut : terre verte -->
+  <style name="Theme.TerreVerte" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="colorPrimary">@color/green_primary</item>
-    <item name="colorPrimaryDark">@color/green_primary</item>
-    <item name="colorAccent">@color/green_accent</item>
-    <item name="android:statusBarColor">@color/green_primary</item>
     <item name="android:windowBackground">@color/green_background</item>
+    <item name="android:statusBarColor">@color/green_primary</item>
     <item name="android:fontFamily">@font/raleway_light</item>
-    <item name="android:textAppearance">@style/TextAppearance.Bold</item>
   </style>
 
+  <!-- thème feuille d'Automn -->
+  <style name="Theme.FeuilleAutomn" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/feuille_automn_header</item>
+    <item name="android:windowBackground">@color/feuille_automn_bg</item>
+    <item name="android:statusBarColor">@color/feuille_automn_header</item>
+    <item name="android:fontFamily">@font/raleway_light</item>
+  </style>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-      <!-- Désactivation de la splash par défaut -->
-      <item name="android:windowSplashScreenAnimatedIcon">@null</item>
-      <item name="android:windowSplashScreenBackground">@null</item>
-      <item name="android:windowSplashScreenIconBackgroundColor">@null</item>
-    </style>
+  <!-- mer et ocean -->
+  <style name="Theme.MerOcean" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/mer_ocean_header</item>
+    <item name="android:windowBackground">@color/mer_ocean_bg</item>
+    <item name="android:statusBarColor">@color/mer_ocean_header</item>
+    <item name="android:fontFamily">@font/raleway_light</item>
+  </style>
 
+  <!-- theme fleur -->
+  <style name="Theme.Fleur" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/fleur_header</item>
+    <item name="android:windowBackground">@color/fleur_bg</item>
+    <item name="android:statusBarColor">@color/fleur_header</item>
+    <item name="android:fontFamily">@font/raleway_light</item>
+  </style>
 
 </resources>

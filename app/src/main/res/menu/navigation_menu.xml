@@ -3,23 +3,29 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_habitat_list"
-            android:icon="@android:drawable/ic_menu_view"
+            android:icon="@drawable/find"
             android:title="Liste des habitats" />
         <item
             android:id="@+id/nav_my_habitat"
-            android:icon="@android:drawable/ic_menu_myplaces"
+            android:icon="@drawable/location"
             android:title="Mon habitat" />
         <item
             android:id="@+id/nav_notifications"
-            android:icon="@android:drawable/ic_dialog_info"
+            android:icon="@drawable/notification"
             android:title="Mes notifications" />
         <item
             android:id="@+id/nav_preferences"
-            android:icon="@android:drawable/ic_menu_manage"
+            android:icon="@drawable/setting"
             android:title="Mes préférences" />
     </group>
     <item
         android:id="@+id/nav_about"
-        android:icon="@android:drawable/ic_menu_help"
+        android:icon="@drawable/interrogation"
         android:title="À propos" />
+
+    <item
+      android:id="@+id/deconnexion"
+      android:icon="@drawable/baseline_power_settings_new_24"
+      android:title="Se déconnecter" />
+
 </menu>

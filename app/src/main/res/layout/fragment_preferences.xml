@@ -1,13 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:padding="16dp"
+  android:background="?android:attr/windowBackground">
+
+  <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <TextView
-        android:id="@+id/tvPreferences"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="Préférences:\n• Notifications : activées\n• Mode éco : activé\n• Thème : Vert sobre"/>
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Choisissez un thème :"
+      android:textStyle="bold"
+      android:textSize="18sp" />
+
+    <Spinner
+      android:id="@+id/spinnerThemes"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="8dp" />
+
+    <Button
+      android:id="@+id/btnApplyTheme"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Appliquer le thème"
+      android:layout_marginTop="16dp" />
+
+    <TextView
+      android:id="@+id/tvPreferences"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Préférences supplémentaires..."
+      android:textSize="16sp"
+      android:layout_marginTop="24dp" />
+  </LinearLayout>
 </ScrollView>

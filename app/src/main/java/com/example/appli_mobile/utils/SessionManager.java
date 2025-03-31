@@ -9,6 +9,8 @@ public class SessionManager {
     private static final String KEY_IS_LOGGED_IN = "isLoggedIn";
     private static final String KEY_ECO_COINS = "ecoCoins";
 
+    private static final String KEY_THEME = "appTheme";
+
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context _context;
@@ -43,5 +45,14 @@ public class SessionManager {
     public void updateEcoCoins(int delta) {
         int current = getEcoCoins();
         setEcoCoins(current + delta);
+    }
+
+    public void setTheme(String theme) {
+      editor.putString(KEY_THEME, theme);
+      editor.commit();
+    }
+
+    public String getTheme() {
+      return pref.getString(KEY_THEME, "Terre Verte");  // par défaut, Terre Verte
     }
 }

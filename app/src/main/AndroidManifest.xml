@@ -10,13 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_greenpulse"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Appli_mobile">
+        android:theme="@style/Theme.TerreVerte">>
 
         <!-- LoginActivity en launcher -->
         <activity
             android:name=".LoginActivity"
             android:exported="true"
-            android:theme="@style/Theme.Appli_mobile">
+            android:theme="@style/Theme.TerreVerte">>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
