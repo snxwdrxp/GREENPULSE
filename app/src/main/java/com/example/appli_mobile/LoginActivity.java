@@ -39,7 +39,7 @@ public class LoginActivity extends Activity {
             public void onClick(View view) {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-                String urlString = "http://192.168.1.132/powerhome/login.php?email=" + username + "&password=" + password;
+                String urlString = "http://10.0.2.2/powerhome/login.php?email=" + username + "&password=" + password;
 
                 Ion.with(LoginActivity.this)
                         .load(urlString)

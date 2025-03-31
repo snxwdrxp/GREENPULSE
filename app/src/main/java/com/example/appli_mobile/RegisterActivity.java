@@ -46,7 +46,7 @@ public class RegisterActivity extends Activity {
                     return;
                 }
 
-                String urlString = "http://192.168.1.132/powerhome/register.php?firstname=" + username  + "&lastname=" + null
+                String urlString = "http://10.0.2.2/powerhome/register.php?firstname=" + username  + "&lastname=" + null
                         + "&email=" + email
                         + "&password=" + password;
 
